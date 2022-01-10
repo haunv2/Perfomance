@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -18,12 +19,21 @@ public class ProductService {
     @Value("${maxResultFetch}")
     private Integer maxFetchRecords;
 
+    public Product getProduct(Long id) {
+        return repo.getById(id);
+    }
+
     public Product addProduct(Product obj) {
         return repo.save(obj);
     }
 
     public Product updateProduct(Product obj) {
         return repo.saveAndFlush(obj);
+    }
+
+    public Boolean deleteProduct(Long id) {
+        repo.deleteById(id);
+        return true;
     }
 
     public List<Product> getAll(Specification specs, Integer page) {

@@ -59,7 +59,7 @@ public class ProductController {
     @GetMapping("/add")
     public Object add() {
         log.info("Time Start-> " + System.currentTimeMillis());
-        for (int i = 0; i < 50; ++i)
+        for (int i = 0; i < 100; ++i)
             doTask();
         return System.currentTimeMillis();
     }
@@ -83,7 +83,7 @@ public class ProductController {
             session.getTransaction().begin(); // begin transaction
 
             //begin insert
-            for (int j = 1; j < 1000001; ++j) {
+            for (int j = 1; j < 10001; ++j) {
                 Long user = Long.valueOf(((int) (Math.random() * 100) + 1)); // get random user from 1 - 100
                 Set<Category> cats = new HashSet<>();
                 int catCount = ((int) (Math.random() * 17) + 1); // random total cat per product
@@ -95,7 +95,7 @@ public class ProductController {
                 //save product
                 service.addProduct(
                         new Product(null, getString(124), getString(235), 129312491l, getString(200), getString(30), user, cats));
-                if (j % 100000 == 0) {
+                if (j % 1000 == 0) {
                     taskExecutor.execute(() -> {
                         session.flush();
                         session.clear();

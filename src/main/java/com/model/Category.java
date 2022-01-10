@@ -15,7 +15,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class Category{
     @Id
     @SequenceGenerator(name = "cat_generator", sequenceName = "cat_sq", allocationSize = 100000)
     @GeneratedValue(generator = "cat_sq")

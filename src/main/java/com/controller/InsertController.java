@@ -28,7 +28,7 @@ public class InsertController {
     @GetMapping("add")
     public Object addBatch() {
         log.info("Time Start-> " + System.currentTimeMillis());
-        for (int i = 0; i < 100; ++i)
+        for (int i = 0; i < 10; ++i)
             doTask();
         return Calendar.getInstance().getTimeInMillis();
     }
